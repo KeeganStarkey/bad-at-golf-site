@@ -1,9 +1,12 @@
 ---
 import '@fontsource-variable/caveat/wght.css';
-// Keegan's front nine. The brand's one running joke, set as a real scorecard.
+// Keegan and Sam's front nine. The brand's one running joke, set as a real scorecard.
 // Scorecard marks: circle = birdie, square = bogey, double square = double bogey or worse.
 const par = [4, 3, 5, 4, 4, 3, 4, 5, 4];
-const keegan: (number | 'X')[] = [7, 5, 8, 3, 9, 4, 7, 'X', 6];
+const players: { name: string; scores: (number | 'X')[]; out: string }[] = [
+  { name: 'Keegan', scores: [7, 5, 8, 3, 9, 4, 7, 'X', 6], out: 'lots' },
+  { name: 'Sam', scores: [6, 4, 7, 6, 4, 5, 8, 7, 'X'], out: 'more' },
+];
 const mark = (s: number | 'X', p: number) => (s === 'X' ? 'pick' : s < p ? 'bird' : s === p ? 'par' : s - p === 1 ? 'bog' : 'dbl');
 interface Props { class?: string }
 const { class: cls } = Astro.props;
@@ -16,8 +19,10 @@ const { class: cls } = Astro.props;
     </thead>
     <tbody>
       <tr class="sc-par"><th scope="row">Par</th>{par.map((p) => <td>{p}</td>)}<td>36</td></tr>
-      <tr class="sc-score"><th scope="row">Keegan</th>{keegan.map((s, i) => <td><span class:list={['pen', mark(s, par[i])]}>{s === 'X' ? <><span aria-hidden="true">X</span><span class="sr-only">picked up</span></> : s}</span></td>)}<td><span class="pen">lots</span></td></tr>
+      {players.map((pl) => (
+        <tr class="sc-score"><th scope="row">{pl.name}</th>{pl.scores.map((sc, i) => <td><span class:list={['pen', mark(sc, par[i])]}>{sc === 'X' ? <><span aria-hidden="true">X</span><span class="sr-only">picked up</span></> : sc}</span></td>)}<td><span class="pen">{pl.out}</span></td></tr>
+      ))}
     </tbody>
   </table>
-  <figcaption><span class="pen note">Marker's note. Stick to filming, mate.</span></figcaption>
+  <figcaption><span class="pen note">Marker's note. Stick to filming, lads.</span></figcaption>
 </figure>

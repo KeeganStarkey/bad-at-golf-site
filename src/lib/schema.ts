@@ -1,5 +1,5 @@
 // JSON-LD for search engines. Every page gets the business and website; pages add their own.
-import { site, socials, sisterBrands } from '../data/site';
+import { site, socials, sisterBrands, team } from '../data/site';
 import { videos, poster } from '../data/videos';
 
 const abs = (p: string) => (p.startsWith('http') ? p : site.url + p);
@@ -22,12 +22,11 @@ export const business = {
   description: 'Golf video production for golf clubs and courses, golf coaches, players and golf brands: course flyovers, club promos, coaching content, sponsorship reels and monthly social media content.',
   email: site.email,
   telephone: '+' + site.whatsapp,
-  founder: { '@type': 'Person', name: site.owner },
+  founder: team.map((t) => ({ '@type': 'Person', name: t.name, jobTitle: 'Videographer' })),
   address: { '@type': 'PostalAddress', addressLocality: site.town, addressRegion: site.region, addressCountry: site.country },
   areaServed,
   knowsAbout: ['Golf video production', 'Golf course flyovers', 'Golf coaching videos', 'Golf social media content'],
   sameAs: socials.filter((s) => s.url).map((s) => s.url),
-  parentOrganization: { '@type': 'Organization', name: 'Starkey Productions', url: sisterBrands[0].url },
 };
 
 export const website = {

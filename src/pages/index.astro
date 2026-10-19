@@ -17,10 +17,10 @@ const who = [
 ];
 const month = ['club-social', 'coach-lesson', 'player-reel', 'longest-round-social'];
 const monthSteps = [
-  { h: 'Shoot day', p: 'One day a month at your club, academy or event, filming everything on the plan.' },
+  { h: 'Shoot day', p: 'One day a month at your club, academy or event, with two of us filming everything on the plan.' },
   { h: 'The edit', p: 'Cut into a batch of clips sized for Instagram, TikTok, YouTube, Facebook and your website.' },
   { h: 'Your say', p: 'You watch the lot and ask for changes before anything goes out.' },
-  { h: 'Out it goes', p: 'Clips ready to post through the month. I can post them for you as well, if you want it off your plate.' },
+  { h: 'Out it goes', p: 'Clips ready to post through the month. We can post them for you as well, if you want it off your plate.' },
 ];
 const hasProof = clients.length > 0 || !!testimonial.text;
 ---
@@ -37,7 +37,7 @@ const hasProof = clients.length > 0 || !!testimonial.text;
       <div class="wrap">
         <h1 class="hero-h" id="hero-h"><span class="kicker">Golf video production</span><span class="hero-l">Bad at golf.</span> <span class="hero-l">Good at filming it.</span></h1>
         <div class="hero-foot">
-          <p class="lede">Films and monthly content for golf clubs, coaches, players and brands. Planned, filmed and edited by Keegan Starkey.</p>
+          <p class="lede">Films and monthly content for golf clubs, coaches, players and brands. Planned, filmed and edited by Keegan Starkey and Sam Fry.</p>
           <div class="ctas"><a class="btn" href="#enquire">Get in touch</a><a class="btn-line" href="/work/">Watch the work</a></div>
         </div>
       </div>
@@ -48,9 +48,9 @@ const hasProof = clients.length > 0 || !!testimonial.text;
     <div class="wrap intro-in">
       <div class="intro-txt">
         <h2 class="sr-only" id="intro-h">About Bad At Golf</h2>
-        <p>I love this game and it doesn't love me back. Filming it is a different story.</p>
+        <p>We love this game and it doesn't love us back. Filming it is a different story.</p>
         <p>Bad At Golf makes golf videos that look the way a good round feels. Early light on the first tee, the walk up eighteen, the shot you'll be talking about in the bar.</p>
-        <p class="intro-more"><a class="tlink" href="/about/">About Keegan and Bad At Golf</a></p>
+        <p class="intro-more"><a class="tlink" href="/about/">About Keegan, Sam and Bad At Golf</a></p>
       </div>
       <Scorecard class="intro-sc" />
     </div>
@@ -60,8 +60,8 @@ const hasProof = clients.length > 0 || !!testimonial.text;
     <Footage k="reel" id="who-v" />
     <div class="wrap">
       <div class="board">
-        <div class="board-top"><h2 class="h2" id="who-h">Who I film for</h2><p>Everyone's tied for first</p></div>
-        <div class="board-cols" aria-hidden="true"><span>Pos</span><span>Player</span><span>What I'd film</span></div>
+        <div class="board-top"><h2 class="h2" id="who-h">Who we film for</h2><p>Everyone's tied for first</p></div>
+        <div class="board-cols" aria-hidden="true"><span>Pos</span><span>Player</span><span>What we'd film</span></div>
         <ul data-swap-for="who-v">
           {who.map((w) => (
             <li>

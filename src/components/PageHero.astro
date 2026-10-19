@@ -15,6 +15,7 @@ interface Props {
   cta2?: { label: string; href: string };
 }
 const { crumbs = [], title, kicker, lede, k, photo, photoAlt = '', cta, cta2 } = Astro.props;
+const media = Astro.slots.has('media');
 const tall = (k && videos[k]?.ratio === '9:16') || !!photo;
 ---
 <section class="phero pine gut" data-hero aria-labelledby="ph-h">
@@ -36,7 +37,7 @@ const tall = (k && videos[k]?.ratio === '9:16') || !!photo;
       )}
     </div>
     <div class="phero-media">
-      {photo ? <img class="phero-photo" src={photo} alt={photoAlt} width="1400" height="1749" fetchpriority="high" /> : k ? <Clip k={k} caption={false} /> : null}
+      {media ? <slot name="media" /> : photo ? <img class="phero-photo" src={photo} alt={photoAlt} width="1400" height="1749" fetchpriority="high" /> : k ? <Clip k={k} caption={false} /> : null}
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 # Bad At Golf website
 
-Site for Bad At Golf (Bad At Golf Company), Keegan Starkey's golf video brand and the sister brand of Starkey Productions. Astro (static output), hosted on Netlify, video on Mux. Built on the same framework as keeganstarkey.com (repo KeeganStarkey/starkey-site) with its own look and voice.
+Site for Bad At Golf (Bad At Golf Company), the golf video brand run by Keegan Starkey and Sam Fry, and the sister brand of Starkey Productions. Astro (static output), hosted on Netlify, video on Mux. Built on the same framework as keeganstarkey.com (repo KeeganStarkey/starkey-site) with its own look and voice.
 
 ## Commands
 - `npm run dev` · local dev server
@@ -20,10 +20,10 @@ Site for Bad At Golf (Bad At Golf Company), Keegan Starkey's golf video brand an
 - Scorecard and leaderboard: pine green `#0F3326`, scorecard paper `#EEF0E4`, flag yellow `#F6CB2F`, pencil red `#B83A24` only for bad scores and leaderboard positions.
 - Big Shoulders Display (uppercase headlines), Instrument Sans (everything else), Caveat only for pencilled scores on the scorecard.
 - Not the Starkey "Noir" camera-frame styling. No mono labels, no tracked caps labels.
-- The scorecard is the one running joke. Keep it to the homepage and about page.
+- The scorecard (Keegan and Sam's front nine) is the one running joke. Keep it to the homepage and about page.
 
 ## Rules
-- Write "Bad At Golf" in copy. Keegan speaks in the first person ("I").
+- Write "Bad At Golf" in copy. The voice is "we": Keegan Starkey and Sam Fry, two videographers and golf mates. Never write it as a one-man business.
 - Playful, sounds like a real person. No colons in headlines or quotes.
 - No prices anywhere. Pricing questions are answered without numbers.
 - No specific turnaround times or video lengths.

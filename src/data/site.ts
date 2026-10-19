@@ -5,9 +5,11 @@
 export const site = {
   name: 'Bad At Golf',
   legalName: 'Bad At Golf Company',
-  // TODO(keegan): confirm the domain. Also used by the sitemap, robots.txt and every canonical link.
+  // Used by the sitemap, robots.txt and every canonical link.
   url: 'https://www.badatgolf.co.uk',
   owner: 'Keegan Starkey',
+  partner: 'Sam Fry',
+  team: 'Keegan Starkey and Sam Fry',
   town: 'Milton Keynes',
   region: 'Buckinghamshire',
   country: 'GB',
@@ -19,7 +21,7 @@ export const site = {
   replyTime: 'one working day',
 };
 
-export const whatsappLink = (text = "Hi Keegan, I'd like to talk about some golf content.") =>
+export const whatsappLink = (text = "Hi Bad At Golf, I'd like to talk about some golf content.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 
 export const mailLink = (subject = 'Golf video enquiry') =>
@@ -45,6 +47,21 @@ export const sisterBrands = [
   { name: 'Starkey Productions', tag: 'Commercial video for businesses and events', url: 'https://www.keeganstarkey.com' },
   // TODO(keegan): add the Wedding Diaries web address.
   { name: 'Wedding Diaries', tag: 'Documentary-style wedding films', url: '' },
+];
+
+// The two people behind Bad At Golf. Shown on the about page and in the search-engine data.
+// TODO(keegan): add Sam's photo (portrait, roughly 4:5) to /public/images/about/ and set `photo`.
+// TODO(keegan): check both bios read right, Sam's especially.
+export const team: { name: string; first: string; role: string; bio: string; photo?: string; photoAlt?: string }[] = [
+  {
+    name: 'Keegan Starkey', first: 'Keegan', role: 'Videographer and co-founder',
+    bio: "Keegan also runs Starkey Productions, a video production company for businesses and events. His golf work includes The Longest Round, a documentary filmed for DAZN. Owns a lot of golf balls, briefly.",
+    photo: '/images/about/keegan-2.jpg', photoAlt: 'Keegan Starkey holding a cinema camera on a shoot',
+  },
+  {
+    name: 'Sam Fry', first: 'Sam', role: 'Videographer and co-founder',
+    bio: "Sam is a videographer and Keegan's golf buddy, usually found on the second camera or looking for his ball in the trees on the left. Between them they've got every angle covered, except the fairway.",
+  },
 ];
 
 export const nav = [

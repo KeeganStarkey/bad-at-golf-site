@@ -11,7 +11,7 @@ interface Props {
   page: string;
   headingLevel?: 'h1' | 'h2';
 }
-const { heading, lede = "Tell me a bit about your club, your coaching or your brand, and I'll come back with ideas and a quote.", preset, page, headingLevel = 'h2' } = Astro.props;
+const { heading, lede = "Tell us a bit about your club, your coaching or your brand, and we'll come back with ideas and a quote.", preset, page, headingLevel = 'h2' } = Astro.props;
 const needs = [
   ['club', 'Golf club or course'], ['coach', 'Coaching content'], ['player', 'Player reel'], ['brand', 'Brand film'], ['monthly', 'Monthly content'], ['unsure', 'Not sure yet'],
 ];
@@ -39,7 +39,7 @@ const hClass = headingLevel === 'h1' ? 'h1 enq-h' : 'h2 enq-h';
         </div>
         <label class="fld"><span>Club, business or Instagram <small>(optional)</small></span><input name="org" type="text" autocomplete="organization" /></label>
         <label class="fld"><span>Anything else <small>(optional)</small></span><textarea name="message" rows="3" placeholder="What it's for, where you are, any dates you've got in mind"></textarea></label>
-        <div class="send"><button type="submit" class="btn" data-label="Send it">Send it</button><p class="reply">I reply within one working day.</p></div>
+        <div class="send"><button type="submit" class="btn" data-label="Send it">Send it</button><p class="reply">We reply within one working day.</p></div>
         <p class="form-msg" role="status" tabindex="-1" hidden></p>
       </form>
     </div>

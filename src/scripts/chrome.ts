@@ -79,13 +79,13 @@ document.querySelectorAll<HTMLFormElement>('form[data-netlify]').forEach((form) 
       form.querySelectorAll('fieldset,.fields,.fld,.send').forEach((el) => ((el as HTMLElement).hidden = true));
       if (msg) {
         msg.hidden = false; msg.classList.add('ok');
-        msg.textContent = `Cheers${first ? ', ' + first : ''}. That's landed with Keegan, and you'll hear back within one working day.`;
+        msg.textContent = `Cheers${first ? ', ' + first : ''}. That's landed with Keegan and Sam, and you'll hear back within one working day.`;
         msg.focus();
       }
     } catch {
       if (msg) {
         msg.hidden = false; msg.classList.remove('ok');
-        msg.innerHTML = 'That didn\'t send. Try again, or message Keegan on <a href="' + (form.dataset.wa || '#') + '">WhatsApp</a> or by <a href="' + (form.dataset.mail || '#') + '">email</a>.';
+        msg.innerHTML = 'That didn\'t send. Try again, or message us on <a href="' + (form.dataset.wa || '#') + '">WhatsApp</a> or by <a href="' + (form.dataset.mail || '#') + '">email</a>.';
         msg.focus();
       }
       if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send it'; }

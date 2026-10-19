@@ -20,18 +20,18 @@ const deliver = [
   { h: 'Monthly social content', p: 'A shoot day every month, cut into a steady run of posts so the club never goes quiet online.' },
 ];
 const steps = [
-  { h: 'Talk it through', p: 'Message me about the club and what you want more of. Members, green fees, societies or events.' },
+  { h: 'Talk it through', p: 'Message us about the club and what you want more of. Members, green fees, societies or events.' },
   { h: 'Plan the day', p: 'Shot list, holes and timings, worked out with you and the greenkeepers around the tee sheet.' },
   { h: 'Shoot', p: "Early starts for the best light on the course, and filming around play so members aren't put out." },
-  { h: 'Edit', p: "You see a first cut, tell me what you think, and get your changes in before it's finished." },
+  { h: 'Edit', p: "You see a first cut, tell us what you think, and get your changes in before it's finished." },
 ];
 const faqs = [
-  { q: 'How much does a golf course video cost?', a: "It depends on how many holes you want covered, how many filming days it takes and how many versions you need. Tell me what you're after and I'll send you a tailored quote." },
+  { q: 'How much does a golf course video cost?', a: "It depends on how many holes you want covered, how many filming days it takes and how many versions you need. Tell us what you're after and we'll send you a tailored quote." },
   { q: 'Will filming get in the way of members?', a: "It shouldn't. Filming is planned around your tee sheet, usually early in the morning and at quieter times, and we'll agree the plan with you and the greenkeeping team first." },
   { q: 'What do you get with monthly content?', a: 'A shoot day at the club each month, edited into a batch of clips sized for Instagram, TikTok, Facebook, YouTube and your website. Posting and scheduling can be added as its own service if you want it handled for you.' },
   { q: 'Can members and staff be in the videos?', a: "Yes, and they usually make the best bits. Nobody has to learn lines. Most people forget the camera's there after a few holes." },
   { q: 'When will we get the finished film?', a: "It depends on the project. We'll agree dates before anything is filmed, and plan around anything you've got coming up, like the new season or an open day." },
-  { q: 'Do you only work near Milton Keynes?', a: "I'm based in Milton Keynes and film at clubs across Buckinghamshire, Bedfordshire, Northamptonshire, Hertfordshire and Oxfordshire. I travel further for the right course, overseas included." },
+  { q: 'Do you only work near Milton Keynes?', a: "We're based in Milton Keynes and film at clubs across Buckinghamshire, Bedfordshire, Northamptonshire, Hertfordshire and Oxfordshire. We travel further for the right course, overseas included." },
 ];
 ---
 <Base
@@ -100,12 +100,12 @@ const faqs = [
     <div class="wrap">
       <h2 class="h2" id="how-h" style="margin-bottom:clamp(28px,3.5vw,48px)">How it goes</h2>
       <Holes label="How a golf club shoot works" steps={steps} />
-      <h3 class="h3" style="margin-top:clamp(48px,6vw,80px)">Where I film</h3>
+      <h3 class="h3" style="margin-top:clamp(48px,6vw,80px)">Where we film</h3>
       <ul class="areas">{areas.map((a) => <li>{a}</li>)}<li>UK-wide and abroad</li></ul>
     </div>
   </section>
 
   <Faq items={faqs} />
-  <Enquiry heading="Show off your course" preset="club" page="Golf clubs" lede="Tell me about the club and what you want more of, and I'll come back with ideas and a quote." />
+  <Enquiry heading="Show off your course" preset="club" page="Golf clubs" lede="Tell us about the club and what you want more of, and we'll come back with ideas and a quote." />
   <Related exclude="clubs" />
 </Base>
