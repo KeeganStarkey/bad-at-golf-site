@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Clip from '../components/Clip.astro';
+import Holes from '../components/Holes.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import Related from '../components/Related.astro';
+import { areas } from '../data/site';
+import { breadcrumb, faq, service, videoObjects } from '../lib/schema';
+import '../styles/inner.css';
+
+const path = '/golf-clubs/';
+const deliver = [
+  { h: 'Hole flyovers', p: "Every hole from tee to green, so golfers know what they're in for before they book a tee time." },
+  { h: 'Club promo film', p: 'The one that sums up your club. Made for your homepage, YouTube and the visitor pages that sell green fees.' },
+  { h: 'Membership films', p: 'Real members on a real Saturday. Shows people what joining actually feels like, not just what it costs.' },
+  { h: 'Societies and golf days', p: 'Films that sell society packages, corporate days and open competitions to the people who organise them.' },
+  { h: 'Clubhouse and hospitality', p: 'The bar, the food, the terrace after a round. Useful for visitors, functions and stay and play.' },
+  { h: 'Monthly social content', p: 'A shoot day every month, cut into a steady run of posts so the club never goes quiet online.' },
+];
+const steps = [
+  { h: 'Talk it through', p: 'Message me about the club and what you want more of. Members, green fees, societies or events.' },
+  { h: 'Plan the day', p: 'Shot list, holes and timings, worked out with you and the greenkeepers around the tee sheet.' },
+  { h: 'Shoot', p: "Early starts for the best light on the course, and filming around play so members aren't put out." },
+  { h: 'Edit', p: "You see a first cut, tell me what you think, and get your changes in before it's finished." },
+];
+const faqs = [
+  { q: 'How much does a golf course video cost?', a: "It depends on how many holes you want covered, how many filming days it takes and how many versions you need. Tell me what you're after and I'll send you a tailored quote." },
+  { q: 'Will filming get in the way of members?', a: "It shouldn't. Filming is planned around your tee sheet, usually early in the morning and at quieter times, and we'll agree the plan with you and the greenkeeping team first." },
+  { q: 'What do you get with monthly content?', a: 'A shoot day at the club each month, edited into a batch of clips sized for Instagram, TikTok, Facebook, YouTube and your website. Posting and scheduling can be added as its own service if you want it handled for you.' },
+  { q: 'Can members and staff be in the videos?', a: "Yes, and they usually make the best bits. Nobody has to learn lines. Most people forget the camera's there after a few holes." },
+  { q: 'When will we get the finished film?', a: "It depends on the project. We'll agree dates before anything is filmed, and plan around anything you've got coming up, like the new season or an open day." },
+  { q: 'Do you only work near Milton Keynes?', a: "I'm based in Milton Keynes and film at clubs across Buckinghamshire, Bedfordshire, Northamptonshire, Hertfordshire and Oxfordshire. I travel further for the right course, overseas included." },
+];
+---
+<Base
+  title="Golf Club & Golf Course Video Production | Bad At Golf"
+  description="Golf course flyovers, golf club promo videos, membership films and monthly social media content for golf clubs in Milton Keynes and across the UK."
+  current="clubs"
+  schema={[
+    service({ name: 'Golf club and golf course videos', serviceType: 'Golf course video production', path, audience: 'Golf clubs and golf courses', description: 'Hole flyovers, club promo films, membership films, society and golf day films and monthly social media content for golf clubs.', offers: deliver.map((d) => d.h) }),
+    breadcrumb([{ name: 'Golf clubs', path }]),
+    faq(faqs),
+    ...videoObjects(['club-promo', 'club-flyover', 'club-social']),
+  ]}
+>
+  <PageHero
+    crumbs={[{ name: 'Golf clubs' }]}
+    kicker="For golf clubs and courses"
+    title="Golf club and golf course videos"
+    lede="Hole flyovers, promo films and monthly content that show golfers why your course is worth the drive. For members' clubs, pay and play courses and resorts."
+    k="club-promo"
+    cta={{ label: 'Talk about your club', href: '#enquire' }}
+    cta2={{ label: 'What you get', href: '#what' }}
+  />
+
+  <section class="sec gut paper" aria-labelledby="intro-h">
+    <div class="wrap intro2">
+      <h2 class="h2" id="intro-h">Your course is the best advert you've got</h2>
+      <div class="prose">
+        <p>Most golfers choose where to play, or where to join, on their phone. If all they find is a few old photos and a scorecard, they'll book somewhere else.</p>
+        <p>Bad At Golf makes golf course videos that put people on the first tee before they've left the house. Flyovers that show off every hole, films about the members and the clubhouse, and a steady stream of social content that keeps the club in front of the right people all year round.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="what" aria-labelledby="what-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="what-h">What you get</h2><p class="muted">Pick one, or put a few together for the season ahead.</p></div>
+      <ul class="del">
+        {deliver.map((d) => <li><h3 class="h3">{d.h}</h3><p>{d.p}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec gut pine" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="work-h">Golf club work</h2><a class="tlink" href="/work/">See all the work</a></div>
+      <div class="ev-grid">
+        <Clip k="club-flyover" class="big" />
+        <Clip k="club-social" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="monthly" aria-labelledby="month-h">
+    <div class="wrap">
+      <div class="callout">
+        <div>
+          <h2 class="h2" id="month-h">Monthly content for golf clubs</h2>
+          <p class="lede muted" style="margin-top:20px">One shoot day a month at the club, edited into clips for every channel you use. Course conditions, competition days, the new menu, the junior section, the hole everyone talks about. The club stays busy online without your team having to find the time.</p>
+        </div>
+        <div class="ctas"><a class="btn" href="#enquire">Ask about monthly content</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="how" aria-labelledby="how-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="h2" id="how-h" style="margin-bottom:clamp(28px,3.5vw,48px)">How it goes</h2>
+      <Holes label="How a golf club shoot works" steps={steps} />
+      <h3 class="h3" style="margin-top:clamp(48px,6vw,80px)">Where I film</h3>
+      <ul class="areas">{areas.map((a) => <li>{a}</li>)}<li>UK-wide and abroad</li></ul>
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <Enquiry heading="Show off your course" preset="club" page="Golf clubs" lede="Tell me about the club and what you want more of, and I'll come back with ideas and a quote." />
+  <Related exclude="clubs" />
+</Base>

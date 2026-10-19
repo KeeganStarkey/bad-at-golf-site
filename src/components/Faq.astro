@@ -1,0 +1,15 @@
+---
+interface Props { items: { q: string; a: string }[]; heading?: string }
+const { items, heading = 'Questions' } = Astro.props;
+---
+<section class="sec gut paper" id="faq" aria-labelledby="faq-h">
+  <div class="wrap faq">
+    <div class="faq-h">
+      <h2 class="h2" id="faq-h">{heading}</h2>
+      <p class="muted">Anything not covered here, just ask. You'll get a straight answer.</p>
+    </div>
+    <div class="faq-list">
+      {items.map(({ q, a }) => <details><summary>{q}<i aria-hidden="true"></i></summary><p set:html={a} /></details>)}
+    </div>
+  </div>
+</section>

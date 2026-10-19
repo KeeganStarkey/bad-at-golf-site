@@ -1,0 +1,23 @@
+---
+import '@fontsource-variable/caveat/wght.css';
+// Keegan's front nine. The brand's one running joke, set as a real scorecard.
+// Scorecard marks: circle = birdie, square = bogey, double square = double bogey or worse.
+const par = [4, 3, 5, 4, 4, 3, 4, 5, 4];
+const keegan: (number | 'X')[] = [7, 5, 8, 3, 9, 4, 7, 'X', 6];
+const mark = (s: number | 'X', p: number) => (s === 'X' ? 'pick' : s < p ? 'bird' : s === p ? 'par' : s - p === 1 ? 'bog' : 'dbl');
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<figure class:list={['sc', cls]}>
+  <p class="sc-head" id="sc-h"><span class="sc-club">Bad At Golf Club</span><span class="sc-who">Medal round, front nine</span></p>
+  <table aria-labelledby="sc-h">
+    <thead>
+      <tr><th scope="row">Hole</th>{par.map((_, i) => <th scope="col">{i + 1}</th>)}<th scope="col">Out</th></tr>
+    </thead>
+    <tbody>
+      <tr class="sc-par"><th scope="row">Par</th>{par.map((p) => <td>{p}</td>)}<td>36</td></tr>
+      <tr class="sc-score"><th scope="row">Keegan</th>{keegan.map((s, i) => <td><span class:list={['pen', mark(s, par[i])]}>{s === 'X' ? <><span aria-hidden="true">X</span><span class="sr-only">picked up</span></> : s}</span></td>)}<td><span class="pen">lots</span></td></tr>
+    </tbody>
+  </table>
+  <figcaption><span class="pen note">Marker's note. Stick to filming, mate.</span></figcaption>
+</figure>

@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { site } from '../data/site';
+import { breadcrumb } from '../lib/schema';
+import '../styles/inner.css';
+---
+<Base
+  title="Contact a Golf Videographer in Milton Keynes | Bad At Golf"
+  description="Get in touch with Bad At Golf about golf course videos, coaching content, sponsorship reels or brand films. Enquiry form, WhatsApp or email."
+  current="contact"
+  schema={[breadcrumb([{ name: 'Contact', path: '/contact/' }])]}
+>
+  <section class="phead pine gut" data-hero aria-labelledby="ct-h">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-hidden="true">/</li><li><span aria-current="page">Contact</span></li></ol></nav>
+      <h1 class="h1" id="ct-h">Contact Bad At Golf</h1>
+      <p class="lede">Fill in the form, send a WhatsApp or drop an email. Whichever you pick, it goes straight to Keegan, and you'll hear back within {site.replyTime}.</p>
+    </div>
+  </section>
+  <Enquiry heading="Tee it up" preset="unsure" page="Contact" />
+</Base>

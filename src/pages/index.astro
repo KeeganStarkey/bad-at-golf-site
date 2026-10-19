@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import Clip from '../components/Clip.astro';
+import Footage from '../components/Footage.astro';
+import Scorecard from '../components/Scorecard.astro';
+import Holes from '../components/Holes.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { swapAttrs } from '../data/videos';
+import { clients, testimonial } from '../data/site';
+import { videoObjects } from '../lib/schema';
+import '../styles/home.css';
+
+const who = [
+  { name: 'Golf clubs and courses', what: 'Hole flyovers, club promos, membership and society films, and monthly social content', href: '/golf-clubs/', k: 'club-flyover', link: 'Golf club videos' },
+  { name: 'Coaches and teaching pros', what: 'Coaching tips, swing content and academy films that bring students through the door', href: '/golf-coaches/', k: 'coach-promo', link: 'Videos for coaches' },
+  { name: 'Players and brands', what: 'Sponsorship reels for players, and lifestyle and product films for golf brands', href: '/players-and-brands/', k: 'player-reel', link: 'Player and brand content' },
+];
+const month = ['club-social', 'coach-lesson', 'player-reel', 'longest-round-social'];
+const monthSteps = [
+  { h: 'Shoot day', p: 'One day a month at your club, academy or event, filming everything on the plan.' },
+  { h: 'The edit', p: 'Cut into a batch of clips sized for Instagram, TikTok, YouTube, Facebook and your website.' },
+  { h: 'Your say', p: 'You watch the lot and ask for changes before anything goes out.' },
+  { h: 'Out it goes', p: 'Clips ready to post through the month. I can post them for you as well, if you want it off your plate.' },
+];
+const hasProof = clients.length > 0 || !!testimonial.text;
+---
+<Base
+  title="Golf Video Production for Clubs, Coaches & Brands | Bad At Golf"
+  description="Golf video production for golf clubs, courses, coaches, players and golf brands. Course flyovers, promo films, coaching content and monthly social media videos."
+  current="home"
+  schema={videoObjects(['reel', 'longest-round', 'longest-round-social'])}
+>
+  <section class="hero" data-hero aria-labelledby="hero-h">
+    <Footage k="reel" />
+    <div class="hero-shade"></div>
+    <div class="hero-in gut">
+      <div class="wrap">
+        <h1 class="hero-h" id="hero-h"><span class="kicker">Golf video production</span><span class="hero-l">Bad at golf.</span> <span class="hero-l">Good at filming it.</span></h1>
+        <div class="hero-foot">
+          <p class="lede">Films and monthly content for golf clubs, coaches, players and brands. Planned, filmed and edited by Keegan Starkey.</p>
+          <div class="ctas"><a class="btn" href="#enquire">Get in touch</a><a class="btn-line" href="/work/">Watch the work</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro gut paper" aria-labelledby="intro-h">
+    <div class="wrap intro-in">
+      <div class="intro-txt">
+        <h2 class="sr-only" id="intro-h">About Bad At Golf</h2>
+        <p>I love this game and it doesn't love me back. Filming it is a different story.</p>
+        <p>Bad At Golf makes golf videos that look the way a good round feels. Early light on the first tee, the walk up eighteen, the shot you'll be talking about in the bar.</p>
+        <p class="intro-more"><a class="tlink" href="/about/">About Keegan and Bad At Golf</a></p>
+      </div>
+      <Scorecard class="intro-sc" />
+    </div>
+  </section>
+
+  <section class="who pine gut" aria-labelledby="who-h">
+    <Footage k="reel" id="who-v" />
+    <div class="wrap">
+      <div class="board">
+        <div class="board-top"><h2 class="h2" id="who-h">Who I film for</h2><p>Everyone's tied for first</p></div>
+        <div class="board-cols" aria-hidden="true"><span>Pos</span><span>Player</span><span>What I'd film</span></div>
+        <ul data-swap-for="who-v">
+          {who.map((w) => (
+            <li>
+              <a href={w.href} {...swapAttrs(w.k)}>
+                <span class="pos" aria-hidden="true">T1</span>
+                <span class="who-n">{w.name}</span>
+                <span class="who-what">{w.what}<br /><u>{w.link}</u></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h2" id="work-h">Recent work</h2>
+        <a class="tlink" href="/work/">See all the work</a>
+      </div>
+      <div class="work-grid">
+        <Clip k="longest-round" />
+        <Clip k="longest-round-social" />
+        <div class="wide-2">
+          <Clip k="club-promo" />
+          <Clip k="coach-promo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut pine" id="monthly" aria-labelledby="month-h">
+    <div class="wrap">
+      <div class="month-head">
+        <h2 class="h2" id="month-h">A fresh round of content every month</h2>
+        <p class="lede muted">Posting once and going quiet for six weeks doesn't fill a tee sheet or a coaching diary. Monthly content keeps your club, your coaching or your name in front of people, week after week, without you having to think about it.</p>
+      </div>
+      <div class="strip">
+        {month.map((k) => <Clip k={k} />)}
+      </div>
+      <Holes label="How a month of content works" steps={monthSteps} />
+      <p class="month-more"><a class="tlink" href="/golf-clubs/#monthly">How monthly content works for golf clubs</a></p>
+    </div>
+  </section>
+
+  {hasProof && (
+    <section class="sec gut paper proof" aria-label="Clients">
+      <div class="wrap">
+        {clients.length > 0 && (<><h2 class="h3">Played with</h2><ul>{clients.map((c) => <li>{c.logo ? <img src={c.logo} alt={c.name} loading="lazy" /> : c.name}</li>)}</ul></>)}
+        {testimonial.text && (
+          <blockquote class="quote"><p>“{testimonial.text}”</p><footer>{testimonial.name}{testimonial.role && `, ${testimonial.role}`}</footer></blockquote>
+        )}
+      </div>
+    </section>
+  )}
+
+  <Enquiry heading="Tee it up" page="Home" />
+</Base>

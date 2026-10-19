@@ -1,0 +1,60 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# ── Short and likely addresses → the real pages ──
+[[redirects]]
+  from = "/services"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/golf-courses"
+  to = "/golf-clubs/"
+  status = 301
+
+[[redirects]]
+  from = "/coaches"
+  to = "/golf-coaches/"
+  status = 301
+
+[[redirects]]
+  from = "/players"
+  to = "/players-and-brands/"
+  status = 301
+
+[[redirects]]
+  from = "/brands"
+  to = "/players-and-brands/"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/work/"
+  status = 301
+
+# ── Security and caching ──
+# The script hash allows the one inline script in src/components/Header.astro.
+# If that script changes, recalculate the hash and update it here.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://image.mux.com; media-src 'self' blob: https://*.mux.com; connect-src 'self' https://*.mux.com; worker-src 'self' blob:; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

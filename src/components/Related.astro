@@ -1,0 +1,18 @@
+---
+interface Props { exclude?: string }
+const { exclude } = Astro.props;
+const all = [
+  { key: 'clubs', href: '/golf-clubs/', name: 'Golf clubs and courses', note: 'Flyovers, promos and monthly content that fill tee sheets' },
+  { key: 'coaches', href: '/golf-coaches/', name: 'Coaches and teaching pros', note: 'Coaching content and academy films that bring in students' },
+  { key: 'players', href: '/players-and-brands/', name: 'Players and brands', note: 'Sponsorship reels and brand films with proper golf in them' },
+];
+const items = all.filter((x) => x.key !== exclude);
+---
+<section class="sec gut pine" aria-labelledby="rel-h">
+  <div class="wrap">
+    <h2 class="h2" id="rel-h" style="margin-bottom:clamp(28px,3.5vw,48px)">Also on the card</h2>
+    <ul class="related">
+      {items.map((x) => <li><a href={x.href}><b>{x.name}</b><span>{x.note}</span></a></li>)}
+    </ul>
+  </div>
+</section>

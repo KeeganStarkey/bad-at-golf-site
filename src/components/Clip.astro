@@ -1,0 +1,43 @@
+---
+// A clip in a rounded frame. Films with footage open the player; empty slots show a quiet placeholder.
+import { videos, poster, sourceAttrs, ratioClass, hasSource } from '../data/videos';
+
+interface Props {
+  k: string;
+  caption?: boolean;
+  title?: string;
+  sub?: string;
+  class?: string;
+  play?: boolean;
+  ratio?: '16:9' | '9:16' | '1:1';
+  cat?: string;
+  eager?: boolean;
+}
+const { k, caption = true, title, sub, class: cls, play, ratio, cat } = Astro.props;
+const v = videos[k];
+if (!v) throw new Error(`Unknown video key: ${k}`);
+const r = ratio || v.ratio;
+const has = hasSource(k);
+const isPlay = (play ?? !!v.film) && has;
+const t = title || v.title;
+const s = sub || v.sub;
+const playAttrs = isPlay ? {
+  'data-play': '',
+  'data-title': t,
+  'data-sub': s,
+  'data-ratio': v.ratio,
+  'data-poster': poster(k),
+  'data-mux': v.mux || undefined,
+  'data-src': !v.mux && v.local ? `/media/${v.local}.mp4` : undefined,
+} : {};
+const Tag = isPlay ? 'button' : 'div';
+---
+<figure class:list={['clip', cls, { 'is-tall': r === '9:16', 'is-empty': !has }]} data-cat={cat}>
+  <Tag class:list={['clip-v', ratioClass(r)]} {...(isPlay ? { type: 'button', 'aria-label': `Watch ${t}, ${s}` } : {})} {...playAttrs}>
+    {has
+      ? <video class="footage" muted loop playsinline preload="none" poster={poster(k)} aria-hidden="true" tabindex="-1" {...sourceAttrs(k)}></video>
+      : <span class="clip-empty" aria-hidden="true"><span class="flag-mark"></span></span>}
+    {isPlay && <span class="clip-play" aria-hidden="true"><i></i>Watch</span>}
+  </Tag>
+  {caption && <figcaption><span class="clip-title">{t}</span><span class="clip-sub">{s}</span></figcaption>}
+</figure>

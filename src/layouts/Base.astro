@@ -1,0 +1,76 @@
+---
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource-variable/instrument-sans/wght.css';
+import '../styles/base.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { site, whatsappLink } from '../data/site';
+import { business, website } from '../lib/schema';
+import displayLatin from '@fontsource-variable/big-shoulders-display/files/big-shoulders-display-latin-wght-normal.woff2?url';
+import bodyLatin from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  current?: string;
+  schema?: object[];
+  noindex?: boolean;
+  enquireHref?: string;
+  mbar?: string;
+  ogImage?: string;
+}
+const { title, description, current, schema = [], noindex = false, enquireHref = '#enquire', mbar = 'Get in touch', ogImage = '/og.png' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ld = { '@context': 'https://schema.org', '@graph': [business, website, ...schema] };
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+  <meta name="theme-color" content="#0F3326" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href={displayLatin} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={bodyLatin} as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(ogImage, site.url).href} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://image.mux.com" crossorigin />
+  <link rel="preconnect" href="https://stream.mux.com" crossorigin />
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <slot name="head" />
+</head>
+<body>
+  <Header current={current} ctaHref={enquireHref} />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer enquireHref={enquireHref} />
+  {mbar && (
+    <div class="m-bar" id="m-bar" inert>
+      <a class="btn" href={enquireHref}>{mbar}</a>
+      <a class="btn-line" href={whatsappLink()} target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  )}
+  <Lightbox />
+  <script>
+    import '../scripts/footage';
+    import '../scripts/chrome';
+    import '../scripts/lightbox';
+  </script>
+</body>
+</html>

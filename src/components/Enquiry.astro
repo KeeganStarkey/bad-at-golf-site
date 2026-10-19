@@ -1,0 +1,48 @@
+---
+// The enquiry form, submitted to Netlify Forms. One form name everywhere ("enquiry").
+// Netlify finds it in the built HTML: keep data-netlify, the hidden form-name and the honeypot.
+import Direct from './Direct.astro';
+import { whatsappLink, mailLink } from '../data/site';
+
+interface Props {
+  heading: string;
+  lede?: string;
+  preset?: string;
+  page: string;
+  headingLevel?: 'h1' | 'h2';
+}
+const { heading, lede = "Tell me a bit about your club, your coaching or your brand, and I'll come back with ideas and a quote.", preset, page, headingLevel = 'h2' } = Astro.props;
+const needs = [
+  ['club', 'Golf club or course'], ['coach', 'Coaching content'], ['player', 'Player reel'], ['brand', 'Brand film'], ['monthly', 'Monthly content'], ['unsure', 'Not sure yet'],
+];
+const H = headingLevel;
+const hClass = headingLevel === 'h1' ? 'h1 enq-h' : 'h2 enq-h';
+---
+<section class="sec gut paper" id="enquire" aria-labelledby="enq-h">
+  <div class="wrap enq">
+    <div>
+      <H class={hClass} id="enq-h"><slot name="kicker" />{heading}</H>
+      <p class="lede enq-lede">{lede}</p>
+      <form class="form" name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" data-wa={whatsappLink()} data-mail={mailLink()}>
+        <input type="hidden" name="form-name" value="enquiry" />
+        <input type="hidden" name="page" value={page} />
+        <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+        <fieldset class="need">
+          <legend>What are you after?</legend>
+          <div class="chips">
+            {needs.map(([v, l]) => <label class="chip"><input type="radio" name="need" value={v} checked={preset === v} /><span>{l}</span></label>)}
+          </div>
+        </fieldset>
+        <div class="fields">
+          <label class="fld"><span>Your name</span><input name="name" type="text" autocomplete="name" required /></label>
+          <label class="fld"><span>Email or phone</span><input name="contact" type="text" autocomplete="email" placeholder="Whichever suits you" required /></label>
+        </div>
+        <label class="fld"><span>Club, business or Instagram <small>(optional)</small></span><input name="org" type="text" autocomplete="organization" /></label>
+        <label class="fld"><span>Anything else <small>(optional)</small></span><textarea name="message" rows="3" placeholder="What it's for, where you are, any dates you've got in mind"></textarea></label>
+        <div class="send"><button type="submit" class="btn" data-label="Send it">Send it</button><p class="reply">I reply within one working day.</p></div>
+        <p class="form-msg" role="status" tabindex="-1" hidden></p>
+      </form>
+    </div>
+    <Direct />
+  </div>
+</section>

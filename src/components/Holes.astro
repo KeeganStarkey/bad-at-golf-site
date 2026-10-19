@@ -1,0 +1,14 @@
+---
+// A process laid out like four holes on a scorecard. Only for steps that genuinely happen in order.
+interface Props { steps: { h: string; p: string }[]; label: string }
+const { steps, label } = Astro.props;
+---
+<ol class="holes" aria-label={label}>
+  {steps.map((s, i) => (
+    <li>
+      <p class="hole-n"><span>Hole</span><b>{i + 1}</b></p>
+      <h3 class="h3">{s.h}</h3>
+      <p>{s.p}</p>
+    </li>
+  ))}
+</ol>

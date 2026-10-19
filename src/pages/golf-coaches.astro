@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Clip from '../components/Clip.astro';
+import Holes from '../components/Holes.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import Related from '../components/Related.astro';
+import { breadcrumb, faq, service, videoObjects } from '../lib/schema';
+import '../styles/inner.css';
+
+const path = '/golf-coaches/';
+const deliver = [
+  { h: 'Coaching tips', p: 'Short, clear clips of the fixes you give every week. The kind golfers save, share and come back to.' },
+  { h: 'Swing footage', p: 'Clean, slowed-down swings from the angles that matter, filmed properly instead of on a phone propped against a bag.' },
+  { h: 'Academy or promo film', p: 'Who you are, how you teach and why it works. For your website, Google profile and the pro shop screen.' },
+  { h: 'Online coaching content', p: 'Lesson libraries and drill series filmed in batches, ready for an online course or a members area.' },
+  { h: 'Student stories', p: 'Your students telling it in their own words. Better than any review, and it shows how you coach.' },
+  { h: 'Camps and clinics', p: 'Golf schools, camps and clinics filmed at home or abroad, for next year\'s bookings and this year\'s socials.' },
+];
+const steps = [
+  { h: 'Talk it through', p: 'Message me about your coaching, who you want to reach and where you post now.' },
+  { h: 'Pick the content', p: 'We list the tips, drills and stories worth filming, so the day is about your coaching and not the camera.' },
+  { h: 'Shoot', p: 'Range, short game area and course, filmed in batches so one day gives you plenty to post.' },
+  { h: 'Edit', p: 'Cut for Instagram, TikTok and YouTube. You check everything and ask for changes before it goes out.' },
+];
+const faqs = [
+  { q: 'What videos should a golf coach post?', a: 'The things people ask you about on the range. Quick fixes, drills, before and after swings, and the odd story from a student. They show how you teach, which is what gets someone to book a lesson.' },
+  { q: "I'm not comfortable on camera. Does that matter?", a: "Not at all. You'll be doing what you do every day, which is coaching. I'll talk you through it, nobody has to read a script, and we can go again as many times as you like." },
+  { q: 'Can you film content for an online coaching course?', a: 'Yes. We plan the lessons together and film them in batches, so you end up with a proper course or lesson library rather than a few odd clips.' },
+  { q: 'How much does it cost?', a: "It depends on how much content you need, how many filming days that takes and whether you want it every month. Tell me what you have in mind and I'll send a tailored quote." },
+  { q: 'Do you film at camps and academies abroad?', a: "Yes. Send me the dates and the location and I'll let you know what's possible." },
+  { q: 'Can you post it for me too?', a: 'Yes, as its own service. Plenty of coaches would rather be on the tee than on their phone, so posting and scheduling can be handled for you.' },
+];
+---
+<Base
+  title="Video Content for Golf Coaches & Teaching Pros | Bad At Golf"
+  description="Golf coaching videos, swing footage, academy promo films and monthly social media content for golf coaches and PGA teaching pros. Made to bring in more students."
+  current="coaches"
+  schema={[
+    service({ name: 'Video content for golf coaches', serviceType: 'Golf coaching video production', path, audience: 'Golf coaches and teaching professionals', description: 'Coaching tips, swing footage, academy promo films, online coaching content and monthly social media content for golf coaches.', offers: deliver.map((d) => d.h) }),
+    breadcrumb([{ name: 'Golf coaches', path }]),
+    faq(faqs),
+    ...videoObjects(['coach-lesson', 'coach-promo']),
+  ]}
+>
+  <PageHero
+    crumbs={[{ name: 'Golf coaches' }]}
+    kicker="For coaches and teaching pros"
+    title="Video content for golf coaches"
+    lede="Coaching clips, swing footage and academy films that show people how you teach before they've booked a lesson. More students, on the range and online."
+    k="coach-lesson"
+    cta={{ label: 'Talk about your coaching', href: '#enquire' }}
+    cta2={{ label: 'What you get', href: '#what' }}
+  />
+
+  <section class="sec gut paper" aria-labelledby="intro-h">
+    <div class="wrap intro2">
+      <h2 class="h2" id="intro-h">Your coaching is good. More people should see it.</h2>
+      <div class="prose">
+        <p>Golfers pick a coach the same way they pick everything else now. They scroll. The coaches who post clear, useful videos are the ones getting the messages, filling the diary and selling lessons online.</p>
+        <p>As someone who needs all the coaching going, I know what makes a tip land. Bad At Golf films your coaching properly and cuts it into content that sounds like you, teaches something real and gets people asking about lessons.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="what" aria-labelledby="what-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="what-h">What you get</h2><p class="muted">One shoot, or a monthly rhythm that keeps your feed busy.</p></div>
+      <ul class="del">
+        {deliver.map((d) => <li><h3 class="h3">{d.h}</h3><p>{d.p}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec gut pine" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="work-h">Coaching work</h2><a class="tlink" href="/work/">See all the work</a></div>
+      <div class="ev-grid">
+        <Clip k="coach-promo" class="big" />
+        <Clip k="coach-lesson" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 class="h2" id="how-h" style="margin-bottom:clamp(28px,3.5vw,48px)">How it goes</h2>
+      <Holes label="How a coaching shoot works" steps={steps} />
+    </div>
+  </section>
+
+  <section class="gut paper" aria-labelledby="month-h" style="padding-bottom:clamp(24px,3vw,40px)">
+    <div class="wrap">
+      <div class="callout">
+        <div>
+          <h2 class="h2" id="month-h">Monthly content for coaches</h2>
+          <p class="lede muted" style="margin-top:20px">A shoot day every month, cut into a steady run of tips, drills and student stories. Your feed keeps working while you're busy teaching.</p>
+        </div>
+        <div class="ctas"><a class="btn" href="#enquire">Ask about monthly content</a></div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <Enquiry heading="Get your coaching seen" preset="coach" page="Golf coaches" lede="Tell me about your coaching and where you want more students from, and I'll come back with ideas and a quote." />
+  <Related exclude="coaches" />
+</Base>

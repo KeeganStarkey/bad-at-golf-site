@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Scorecard from '../components/Scorecard.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { site, sisterBrands } from '../data/site';
+import { breadcrumb } from '../lib/schema';
+import '../styles/inner.css';
+
+const person = {
+  '@type': 'Person',
+  name: site.owner,
+  jobTitle: 'Golf videographer',
+  worksFor: { '@id': site.url + '/#business' },
+  url: site.url + '/about/',
+};
+const starkey = sisterBrands[0];
+---
+<Base
+  title="About Keegan Starkey, Golf Videographer | Bad At Golf"
+  description="Bad At Golf is run by Keegan Starkey, a golf videographer based in Milton Keynes who plans, films and edits every project himself."
+  current="about"
+  schema={[person, breadcrumb([{ name: 'About', path: '/about/' }])]}
+>
+  <PageHero
+    crumbs={[{ name: 'About' }]}
+    kicker="About Bad At Golf"
+    title="A golf videographer who's bad at golf"
+    lede="Bad At Golf is run by Keegan Starkey, a filmmaker based in Milton Keynes. The person you message is the one who turns up, films it and edits it."
+    photo="/images/about/keegan-2.jpg" photoAlt="Keegan Starkey holding a cinema camera on a shoot"
+    cta={{ label: 'Get in touch', href: '#enquire' }}
+    cta2={{ label: 'Watch the work', href: '/work/' }}
+  />
+
+  <section class="sec gut paper" aria-labelledby="why-h">
+    <div class="wrap">
+      <h2 class="sr-only" id="why-h">Why Bad At Golf exists</h2>
+      <figure class="ab-quote">
+        <blockquote><p>“Golf is the one thing I've never managed to get good at, and I've put the hours in. So I film it instead. It turns out I'm much better behind a camera than over a four-foot putt.”</p></blockquote>
+        <figcaption>Keegan Starkey, founder</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec gut paper" aria-labelledby="ab-h" style="padding-top:0">
+    <div class="wrap intro2">
+      <h2 class="h2" id="ab-h">The golf side of Starkey Productions</h2>
+      <div class="prose">
+        <p>Bad At Golf is the golf-only sister brand of <a href={starkey.url} target="_blank" rel="noopener">Starkey Productions</a>, the video production company Keegan runs for businesses and events. Same cameras, same care, just pointed at golf.</p>
+        <p>The golf work so far includes The Longest Round, a documentary filmed for DAZN, along with course films, coaching content and social clips for clubs, coaches and players. Keegan plans, shoots and edits every project himself, which means one person to talk to and one look across everything you post.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" aria-label="On set" style="padding-top:0">
+    <div class="wrap" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:clamp(24px,4vw,64px); align-items:center">
+      <ul class="ab-shots">
+        <li><img src="/images/about/keegan-1.jpg" alt="Keegan Starkey setting up a cinema camera" loading="lazy" width="1400" height="1749" /></li>
+        <li><img src="/images/about/keegan-3.jpg" alt="Keegan Starkey filming an interview" loading="lazy" width="1400" height="1749" /></li>
+      </ul>
+      <Scorecard />
+    </div>
+  </section>
+
+  <section class="sec gut paper" aria-labelledby="how-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="h2" id="how-h" style="margin-bottom:clamp(28px,3.5vw,48px)">How the work gets made</h2>
+      <ul class="kit">
+        <li><h3 class="h3">One person, start to finish</h3><p>No account managers or hand-offs. The person who plans the shoot is the one filming it and cutting it.</p></li>
+        <li><h3 class="h3">Cinema cameras, light kit</h3><p>Shot on Sony cinema cameras with a small setup that doesn't hold up play or take over the clubhouse.</p></li>
+        <li><h3 class="h3">Cut for where it's watched</h3><p>Landscape for your website and YouTube, vertical for Instagram and TikTok, all from the same shoot.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <Enquiry heading="Tee it up" preset="unsure" page="About" />
+</Base>

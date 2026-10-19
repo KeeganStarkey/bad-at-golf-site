@@ -1,0 +1,40 @@
+---
+import { nav, socials, sisterBrands, site, whatsappLink, mailLink } from '../data/site';
+interface Props { enquireHref?: string }
+const { enquireHref = '#enquire' } = Astro.props;
+const year = new Date().getFullYear();
+const live = socials.filter((s) => s.url);
+---
+<footer class="foot gut">
+  <div class="foot-top">
+    <div class="foot-col">
+      <h2>Bad At Golf</h2>
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col contact">
+      <h2>Talk to Keegan</h2>
+      <ul>
+        <li><a href={enquireHref}>Send an enquiry</a></li>
+        <li><a href={whatsappLink()} target="_blank" rel="noopener">WhatsApp {site.phoneDisplay}</a></li>
+        <li><a href={mailLink()}>{site.email}</a></li>
+        {live.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.name}</a></li>)}
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Also from Keegan</h2>
+      <ul class="sis">
+        {sisterBrands.map((b) => (
+          <li>{b.url ? <a href={b.url} target="_blank" rel="noopener">{b.name}</a> : <b style="font-weight:400">{b.name}</b>}<span>{b.tag}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="foot-giant" aria-hidden="true"><span class="foot-word"><span class="flag-mark"></span>Bad At Golf</span></div>
+  <div class="foot-bot">
+    <p>Golf video production from {site.town}, filming across the UK and beyond.</p>
+    <p>© {year} {site.legalName}. <a href="/privacy/">Privacy</a></p>
+  </div>
+</footer>

@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Clip from '../components/Clip.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import Related from '../components/Related.astro';
+import { breadcrumb, faq, service, videoObjects } from '../lib/schema';
+import '../styles/inner.css';
+
+const path = '/players-and-brands/';
+const players = [
+  { h: 'Sponsorship reel', p: 'Your game, your results and your personality in one film. The thing that goes in the email to a potential sponsor.' },
+  { h: 'Season content', p: 'Practice, travel, qualifiers and the rounds that matter, filmed through the season so sponsors get something back.' },
+  { h: 'Social content', p: 'Regular clips for Instagram, TikTok and YouTube that grow a following people actually care about.' },
+];
+const brands = [
+  { h: 'Product films', p: 'Clubs, balls, bags and apparel shown in use on a real course, by people who can play.' },
+  { h: 'Lifestyle shoots', p: 'The look and feel of your brand on the course and around it, for campaigns, socials and your site.' },
+  { h: 'Events and activations', p: 'Pro-ams, launches, golf days and sponsored events, with cut-downs ready while people are still talking about it.' },
+  { h: 'Documentary features', p: 'Longer stories about the people and challenges behind a brand, like The Longest Round for DAZN.' },
+];
+const faqs = [
+  { q: 'What should go in a golf sponsorship reel?', a: "Your swing, your results, how you carry yourself and why a brand would want to be next to you. We'll plan it around the sponsors you're targeting, so it says what they need to hear." },
+  { q: 'Can you film at tournaments?', a: "Yes, wherever the event allows filming. Practice rounds and the build-up often give the best footage anyway, and they don't come with the same restrictions." },
+  { q: 'Do you work with agencies?', a: 'Yes. I can work to an agency brief and creative, or bring ideas to the table if that helps more.' },
+  { q: 'How much does it cost?', a: "It depends on the number of filming days, locations and versions you need. Tell me about the project and I'll send a tailored quote." },
+  { q: 'Can you film abroad?', a: "Yes. Tours, training camps and overseas events are all fine. Send the dates and I'll let you know what's possible." },
+];
+---
+<Base
+  title="Golf Sponsorship Reels & Golf Brand Videos | Bad At Golf"
+  description="Sponsorship reels and social content for golfers, and product, lifestyle and event films for golf brands. Golf content filmed by someone who knows the game."
+  current="players"
+  schema={[
+    service({ name: 'Golf sponsorship reels', serviceType: 'Golf player video production', path, audience: 'Golfers looking for sponsorship', description: 'Sponsorship reels, season content and social media content for amateur and professional golfers.', offers: players.map((d) => d.h) }),
+    service({ name: 'Golf brand videos', serviceType: 'Golf brand video production', path, audience: 'Golf brands and agencies', description: 'Product films, lifestyle shoots, event coverage and documentary features for golf brands.', offers: brands.map((d) => d.h) }),
+    breadcrumb([{ name: 'Players and brands', path }]),
+    faq(faqs),
+    ...videoObjects(['longest-round', 'longest-round-social']),
+  ]}
+>
+  <PageHero
+    crumbs={[{ name: 'Players and brands' }]}
+    kicker="For golfers and golf brands"
+    title="Golf content for players and brands"
+    lede="Sponsorship reels for golfers who want backing, and product, lifestyle and event films for brands who want golf that looks like golf."
+    k="longest-round"
+    cta={{ label: 'Talk about your project', href: '#enquire' }}
+    cta2={{ label: 'See the work', href: '#work' }}
+  />
+
+  <section class="sec gut paper" id="players" aria-labelledby="pl-h">
+    <div class="wrap">
+      <div class="intro2" style="margin-bottom:clamp(36px,4.5vw,64px)">
+        <h2 class="h2" id="pl-h">Sponsors back golfers they can see</h2>
+        <div class="prose">
+          <p>Good scores get you noticed. A reel and a feed full of decent content are what make a sponsor say yes, and then keep saying yes.</p>
+          <p>I film players at practice, on the course and through the season, and cut it into a sponsorship reel and social content that shows what you're about. Clear, honest and good enough to put in front of a brand.</p>
+        </div>
+      </div>
+      <ul class="del">
+        {players.map((d) => <li><h3 class="h3">{d.h}</h3><p>{d.p}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec gut pine" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="work-h">Player and brand work</h2><a class="tlink" href="/work/">See all the work</a></div>
+      <div class="ev-grid">
+        <Clip k="longest-round" class="big" />
+        <Clip k="longest-round-social" />
+        <Clip k="brand-lifestyle" class="big" />
+        <Clip k="player-reel" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gut paper" id="brands" aria-labelledby="br-h">
+    <div class="wrap">
+      <div class="intro2" style="margin-bottom:clamp(36px,4.5vw,64px)">
+        <h2 class="h2" id="br-h">Golf brands need proper golf in them</h2>
+        <div class="prose">
+          <p>Golfers can spot a fake swing from the car park. Brand content works when it's filmed by someone who knows the game, on real courses, with people who can actually play.</p>
+          <p>Bad At Golf makes product films, lifestyle shoots and event content for golf brands and the agencies behind them, from a single launch to an ongoing run of social content.</p>
+        </div>
+      </div>
+      <ul class="del">
+        {brands.map((d) => <li><h3 class="h3">{d.h}</h3><p>{d.p}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+  <Enquiry heading="Let's make something worth sharing" preset="player" page="Players and brands" lede="Tell me who you are and what you're working towards, and I'll come back with ideas and a quote." />
+  <Related exclude="players" />
+</Base>
